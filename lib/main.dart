@@ -22,11 +22,11 @@ class MyApp extends StatelessWidget {
         body: ListView(
           children:
           [
-            Players('Arjen Robben'),
-            Players('Robin Van Persie'),
-            Players('Patrick Kluivert'),
-            Players('Memphis Depay'),
-            Players('Matthijs de Ligt'),
+            Players('Arjen Robben', 'Altura: 180cm', 'Peso: 80kg', 'Pé esq', 'Posição: Ponta direita'),
+            Players('Robin Van Persie', 'Altura: 183cm', 'Peso: 71kg', 'Pé esq', 'Posição: Atacante'),
+            Players('Patrick Kluivert', 'Altura: 189cm', 'Peso: 82kg', 'Pé dir', 'Posição: Atacante'),
+            Players('Memphis Depay', 'Altura: 177cm', 'Peso: 78kg', 'Pé dir', 'Posição: Ponta esquerda'),
+            Players('Matthijs de Ligt', 'Altura: 189cm', 'Peso: 89kg', 'Pé dir', 'Zagueiro'),
           ],
         ),
       ),
@@ -37,8 +37,14 @@ class MyApp extends StatelessWidget {
 class Players extends StatelessWidget {
 
   final String nameofplayer;
+  final String playerheight;
+  final String playerweight;
+  final String playerfoot;
+  final String playerposition;
 
-  const Players (this.nameofplayer, {Key? key}) : super(key: key);
+  const Players (this.nameofplayer, this.playerheight, this. playerweight, this.playerfoot,
+      this.playerposition,
+      {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -47,26 +53,61 @@ class Players extends StatelessWidget {
       child: Container(
         child: Stack(
             children: [
-              Container(color: Colors.orangeAccent, height: 140,),
-              Container(color: Colors.orange, height: 100,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row (
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(color: Colors.black54, width: 72, height: 100,),
-                      Container(
-                        width: 200,
-                          child: Text(
-                            nameofplayer,
-                            style: TextStyle(fontSize: 27),
-                          )
-                      ),
-                      ElevatedButton(onPressed: (){}, child: Icon(Icons.add),),
-                      Container(),
-                    ],
+              Container(color: Colors.white, height: 180,),
+              Column(
+                children: [
+                  Container(color: Colors.orangeAccent, height: 140,),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children:[
+                        Container(child: Text(playerposition, style: TextStyle(fontSize: 16,))),
+                        Container(child: Text('Habilidade')),
+                        ]
+                    ),
                   ),
-                ),
+                ],
+              ),
+              Column(
+                children: [
+                  Container(color: Colors.orange, height: 100,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row (
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(color: Colors.black54, width: 72, height: 100,),
+                          Container(
+                            width: 100,
+                              child: Text(
+                                nameofplayer,
+                                style: TextStyle(fontSize: 24,),
+                              )
+                          ),
+                          ElevatedButton(onPressed: (){}, child: Text('Submeter proposta') ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Container(
+                    child: Stack(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children:[
+                              Container(child: Text(playerheight, style: TextStyle(fontSize: 16,)),),
+                              Container(child: Text(playerweight, style: TextStyle(fontSize: 16,)),),
+                              Container(child: Text(playerfoot, style: TextStyle(fontSize: 16,)),),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ]
         ),
