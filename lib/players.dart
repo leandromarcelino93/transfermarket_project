@@ -59,7 +59,7 @@ class Players extends StatelessWidget {
                             width: 72, height: 100,
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(4),
-                              child: Image.network(photo, fit: BoxFit.cover),
+                              child: Image.network(photo, fit: BoxFit.cover,),
                             ),
                           ),
                           Container(

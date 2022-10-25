@@ -21,9 +21,19 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class ProposalsForm extends StatelessWidget {
-
+class ProposalsForm extends StatefulWidget {
+//segunda tela
   ProposalsForm({Key? key}) : super(key: key);
+
+  @override
+  State<ProposalsForm> createState() => _ProposalsFormState();
+}
+
+class _ProposalsFormState extends State<ProposalsForm> {
+
+  TextEditingController nameController = TextEditingController();
+  TextEditingController valueController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -32,42 +42,75 @@ class ProposalsForm extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.teal,
       ),
-      home: Scaffold(
-        backgroundColor: Colors.grey,
-        appBar: AppBar(
-          title: Text('Faça Sua Proposta'),
-        ),
-        body: Column(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(14.0),
-              child: TextField(
-                style: TextStyle(fontSize: 23, fontWeight: FontWeight.w400, ),
-                decoration: InputDecoration(labelText: 'Nome do Jogador',
-                hintText: 'Digite o nome do jogador',),
+      home: Form(
+        key: _formKey,
+        child: Scaffold(
+          backgroundColor: Colors.grey,
+          appBar: AppBar(
+            title: Text('Faça Sua Proposta'),
+          ),
+          body: Center(
+            child: Container(
+              color: Colors.white,
+              height: 570,
+              width: 350,
+              child: Column(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.all(14.0),
+                    child: TextFormField(
+                      validator: (String? value){
+                       if(value != null && value.isEmpty){
+                         return 'Insira o nome do jogador';
+                       }
+                       return null;
+                      },
+                      controller: nameController,
+                      style: TextStyle(fontSize: 23, fontWeight: FontWeight.w400, ),
+                      decoration: InputDecoration(labelText: 'Nome do Jogador',
+                      hintText: 'Digite o nome do jogador',),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextFormField(
+                      validator: (value){
+                        if(value != null){
+                          return 'Insira um valor para proposta';
+                        }
+                        return null;
+                      },
+                      controller: valueController,
+                      style: TextStyle(fontSize: 23,fontWeight: FontWeight.w400,),
+                      decoration: InputDecoration(icon: Icon(Icons.monetization_on), labelText: 'Valor da Proposta'),
+                      keyboardType: TextInputType.number,
+                    ),
+                  ),
+                  ElevatedButton(onPressed:(){
+                    if(_formKey.currentState!.validate()) {
+                      print(nameController.text);
+                      print(valueController.text);
+                      }
+                    }, child: Text('Enviar Proposta')),
+                ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextField(
-                style: TextStyle(fontSize: 23,fontWeight: FontWeight.w400,),
-                decoration: InputDecoration(icon: Icon(Icons.monetization_on), labelText: 'Valor da Proposta'),
-                keyboardType: TextInputType.number,
-              ),
-            ),
-            ElevatedButton(onPressed:(){
-
-              }, child: Text('Enviar Proposta')),
-          ],
+          ),
         ),
       ),
     );
   }
 }
 
-class Proposals extends StatelessWidget {
-
+class Proposals extends StatefulWidget {
+//terceira tela
   const Proposals({Key? key}) : super(key: key);
+
+  @override
+  State<Proposals> createState() => _ProposalsState();
+}
+
+class _ProposalsState extends State<Proposals> {
 
   @override
   Widget build(BuildContext context) {
@@ -93,9 +136,9 @@ class Proposals extends StatelessWidget {
 
 class SubmitedProposals extends StatelessWidget {
 
-  final ItemProposals itemproposals;
+  final ItemProposals _itemproposals;
 
-  const SubmitedProposals(this.itemproposals,
+  const SubmitedProposals(this._itemproposals,
       {Key? key}) : super(key: key);
 
   @override
@@ -103,8 +146,8 @@ class SubmitedProposals extends StatelessWidget {
     return Card(
       child: ListTile(
         leading: Icon(Icons.monetization_on),
-        title: Text(itemproposals.value),
-        subtitle: Text(itemproposals.nameofplayeronitem),
+        title: Text(_itemproposals.value),
+        subtitle: Text(_itemproposals.nameofplayeronitem),
       ),
     );
   }
