@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:transfermarket/main.dart';
 import 'package:transfermarket/skills.dart';
 
-class Players extends StatelessWidget {
+class Players extends StatefulWidget {
 
   final String nameofplayer;
   final String playerheight;
@@ -16,6 +16,11 @@ class Players extends StatelessWidget {
       this.playerposition, this.photo, this.ability,
       {Key? key}) : super(key: key);
 
+  @override
+  State<Players> createState() => _PlayersState();
+}
+
+class _PlayersState extends State<Players> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -32,13 +37,13 @@ class Players extends StatelessWidget {
                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children:[
-                          Container(width: 165, child: Text(playerposition, style: TextStyle(fontSize: 16,))),
+                          Container(width: 165, child: Text(widget.playerposition, style: TextStyle(fontSize: 16,))),
                           Container(
                               width: 70, child: Text('Habilidade', style: TextStyle(fontSize: 14),)),
                           Container(
                             width: 130,
                             child:
-                            SkillLevel(ability: ability),
+                            SkillLevel(ability: widget.ability),
                           ),
                         ]
                     ),
@@ -59,22 +64,25 @@ class Players extends StatelessWidget {
                             width: 72, height: 100,
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(4),
-                              child: Image.network(photo, fit: BoxFit.cover,),
+                              child: Image.network(
+                                errorBuilder:(BuildContext context, Object exception, StackTrace? stackTrace)
+                                {return Image.asset('assets/images/nophoto.jpg');},
+                                widget.photo, fit: BoxFit.cover,),
                             ),
                           ),
                           Container(
                               width: 100,
                               child: Text(
-                                nameofplayer,
+                                widget.nameofplayer,
                                 style: TextStyle(fontSize: 24,),
                               )
                           ),
                           ElevatedButton(
                               onPressed: (){
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(builder: (context) => ProposalsForm(),),
-                                  );
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => ProposalsForm(),),
+                                );
                               },
                               child: Text('Submeter proposta') ),
                         ],
@@ -89,9 +97,9 @@ class Players extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children:[
-                              Container(child: Text(playerheight, style: TextStyle(fontSize: 16,)),),
-                              Container(child: Text(playerweight, style: TextStyle(fontSize: 16,)),),
-                              Container(child: Text(playerfoot, style: TextStyle(fontSize: 16,)),),
+                              Container(child: Text(widget.playerheight, style: TextStyle(fontSize: 16,)),),
+                              Container(child: Text(widget.playerweight, style: TextStyle(fontSize: 16,)),),
+                              Container(child: Text(widget.playerfoot, style: TextStyle(fontSize: 16,)),),
                             ],
                           ),
                         ),

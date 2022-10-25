@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:transfermarket/initialscreen.dart';
 
+
 void main() {
   runApp(const MyApp());
 }
@@ -75,7 +76,7 @@ class _ProposalsFormState extends State<ProposalsForm> {
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
                       validator: (value){
-                        if(value != null){
+                        if(value != null && value.isEmpty){
                           return 'Insira um valor para proposta';
                         }
                         return null;
@@ -86,12 +87,22 @@ class _ProposalsFormState extends State<ProposalsForm> {
                       keyboardType: TextInputType.number,
                     ),
                   ),
-                  ElevatedButton(onPressed:(){
-                    if(_formKey.currentState!.validate()) {
+                  ElevatedButton(child: Text('Enviar Proposta'), onPressed:()
+                    {
+                      if(_formKey.currentState!.validate())
+                      {
                       print(nameController.text);
                       print(valueController.text);
                       }
-                    }, child: Text('Enviar Proposta')),
+                      ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('Proposta enviada.'),),);
+                      //SnackBar não está funcionando por enquanto.
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Proposals(),),
+                      );
+                    },
+                  ),
                 ],
               ),
             ),
@@ -125,47 +136,49 @@ class _ProposalsState extends State<Proposals> {
           title: Text('Propostas Enviadas'),
         ),
         body: Column(
-              children: <Widget>[
-                 SubmitedProposals(ItemProposals('12.000.000', 'Arjen Robben')),
-          ],
+            children: <Widget>[
+            SubmitedProposals('Robben','12000'),
+              ElevatedButton(
+                  onPressed: (){
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => InitialScreen(),),
+                    );
+                  },
+                  child: Text('Fazer Nova Proposta') ),
+            ],
         ),
       ),
     );
   }
 }
 
-class SubmitedProposals extends StatelessWidget {
+class SubmitedProposals extends StatefulWidget {
 
-  final ItemProposals _itemproposals;
+  final String value;
+  final String nameofplayeronitem;
 
-  const SubmitedProposals(this._itemproposals,
+  const SubmitedProposals(this.value,this.nameofplayeronitem,
       {Key? key}) : super(key: key);
 
+  @override
+  State<SubmitedProposals> createState() => _SubmitedProposalsState();
+}
+
+class _SubmitedProposalsState extends State<SubmitedProposals> {
   @override
   Widget build(BuildContext context) {
     return Card(
       child: ListTile(
         leading: Icon(Icons.monetization_on),
-        title: Text(_itemproposals.value),
-        subtitle: Text(_itemproposals.nameofplayeronitem),
+        title: Text(widget.value),
+        subtitle: Text(widget.nameofplayeronitem),
       ),
     );
   }
 }
 
-class ItemProposals extends StatelessWidget {
 
-  final String value;
-  final String nameofplayeronitem;
-
-  const ItemProposals(this.value, this.nameofplayeronitem,
-      {Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
-}
 
 
 

@@ -11,7 +11,7 @@ class InitialScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.grey,
       appBar: AppBar(
-        title: Text('Transfermarket of Dutch Players'),
+        title: Text('Transfermarket'),
       ),
       body: ListView(
         children:
