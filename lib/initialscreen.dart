@@ -14,6 +14,7 @@ class InitialScreen extends StatelessWidget {
         title: Text('Transfermarket'),
       ),
       body: ListView(
+        ///Children com os Players
         children:
         [
           Players('Arjen Robben', 'Altura: 180cm', 'Peso: 80kg', 'Pé esq', 'Posição: Ponta dir.', 'https://www.lance.com.br/files/article_main/uploads/2018/12/02/5c0417bd2a201.jpeg', 5),

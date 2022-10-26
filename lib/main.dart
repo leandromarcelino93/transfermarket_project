@@ -99,7 +99,7 @@ class _ProposalsFormState extends State<ProposalsForm> {
                       //SnackBar não está funcionando por enquanto.
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => Proposals(),),
+                        MaterialPageRoute(builder: (context) => Proposals('',''),),
                       );
                     },
                   ),
@@ -115,7 +115,12 @@ class _ProposalsFormState extends State<ProposalsForm> {
 
 class Proposals extends StatefulWidget {
 //terceira tela
-  const Proposals({Key? key}) : super(key: key);
+
+  final String value;
+  final String nameofplayeronitem;
+
+  const Proposals(this.value, this. nameofplayeronitem,
+      {Key? key}) : super(key: key);
 
   @override
   State<Proposals> createState() => _ProposalsState();
@@ -137,7 +142,13 @@ class _ProposalsState extends State<Proposals> {
         ),
         body: Column(
             children: <Widget>[
-            SubmitedProposals('Robben','12000'),
+             Card(
+                 child: ListTile(
+                    leading: Icon(Icons.monetization_on),
+                    title: Text(widget.value),
+                    subtitle: Text(widget.nameofplayeronitem),
+                ),
+              ),
               ElevatedButton(
                   onPressed: (){
                     Navigator.push(
@@ -153,30 +164,30 @@ class _ProposalsState extends State<Proposals> {
   }
 }
 
-class SubmitedProposals extends StatefulWidget {
-
-  final String value;
-  final String nameofplayeronitem;
-
-  const SubmitedProposals(this.value,this.nameofplayeronitem,
-      {Key? key}) : super(key: key);
-
-  @override
-  State<SubmitedProposals> createState() => _SubmitedProposalsState();
-}
-
-class _SubmitedProposalsState extends State<SubmitedProposals> {
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: ListTile(
-        leading: Icon(Icons.monetization_on),
-        title: Text(widget.value),
-        subtitle: Text(widget.nameofplayeronitem),
-      ),
-    );
-  }
-}
+// class SubmitedProposals extends StatefulWidget {
+//
+//   final String value;
+//   final String nameofplayeronitem;
+//
+//   const SubmitedProposals(this.value,this.nameofplayeronitem,
+//       {Key? key}) : super(key: key);
+//
+//   @override
+//   State<SubmitedProposals> createState() => _SubmitedProposalsState();
+// }
+//
+// class _SubmitedProposalsState extends State<SubmitedProposals> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Card(
+//       child: ListTile(
+//         leading: Icon(Icons.monetization_on),
+//         title: Text(widget.value),
+//         subtitle: Text(widget.nameofplayeronitem),
+//       ),
+//     );
+//   }
+// }
 
 
 
