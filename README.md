@@ -1,16 +1,7 @@
 # transfermarket
 
-Primeiro projeto da mentoria Conquiste Sua Vaga
+Primeiro projeto da mentoria Conquiste Sua Vaga. 
 
-## Getting Started
+Este projeto consiste em uma ideia embrionária de um fictício aplicativo para contratação de jogadores. A ideia é fomentar a prática de conceitos que eu vi até o momento, como a parte de construção de layouts (Column, Row, Container, etc) bem como fazer a navegação (Navigator push e pop) entre as páginas. Demonstração prática do projeto de como ele está até o momento: 
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![Demonstração projeto](https://user-images.githubusercontent.com/109693767/198150087-9260657e-dd7a-4c1a-ae22-90d605db31b8.gif)
