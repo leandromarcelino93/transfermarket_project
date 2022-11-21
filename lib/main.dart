@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:transfermarket/initialscreen.dart';
 
-
 void main() {
   runApp(const MyApp());
 }

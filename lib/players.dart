@@ -90,8 +90,8 @@ class _PlayersState extends State<Players> {
                     ),
                   ),
                   Container(
-                    child: Stack(
-                      children: [
+                      child: Stack(
+                        children: [
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Row(
