@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:transfermarket/main.dart';
+import 'package:transfermarket/components/proposals.dart';
 
 class ProposalsInherited extends InheritedWidget {
     ProposalsInherited ({
@@ -9,8 +9,8 @@ class ProposalsInherited extends InheritedWidget {
 
   final List<Proposals> proposalsList =
   [
-    Proposals('12000', 'Robben'),
-    Proposals('15000', 'Kluivert'),
+   Proposals('15000', 'Patrick Kluivert'),
+   Proposals('18000', 'Arjen Robben'),
   ];
 
   void newProposal(String valueofplayer, String nameofplayer){

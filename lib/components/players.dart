@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:transfermarket/main.dart';
-import 'package:transfermarket/skills.dart';
+import 'package:transfermarket/components/skills.dart';
+import 'package:transfermarket/screens/form_screen.dart';
 
 class Players extends StatefulWidget {
 

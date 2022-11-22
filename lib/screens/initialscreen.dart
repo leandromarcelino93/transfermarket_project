@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:transfermarket/players.dart';
+import 'package:transfermarket/components/players.dart';
+
 
 
 class InitialScreen extends StatelessWidget {
